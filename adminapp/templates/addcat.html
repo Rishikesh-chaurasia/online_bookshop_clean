@@ -1,0 +1,25 @@
+{% extends 'adminbase.html' %}
+{% block admin %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Add category</h1>
+
+    </div>
+    <div class="col-sm-9 mx-auto">
+        <div class="card">
+            <form method="POST">
+                {% csrf_token %}
+                <lable for="catname">Categoty Name</lable>
+                <input type="text" name="name" class="form-control mb-4" id="catname">
+                <label for="desc">Description</label>
+                <textarea type="text"name= "description" class="form-control mb-4" id="desc"></textarea>
+                <button type="submit" class="btn btn-success">add</button>
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

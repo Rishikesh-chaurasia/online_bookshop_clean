@@ -1,0 +1,174 @@
+{% extends 'userbase.html' %}
+{% load static %}
+
+{% block user %}
+
+<div class="container mt-5">
+
+    <!-- HEADING -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold text-center">🛒 Welcome to Cart</h2>
+        </div>
+    </div>
+
+    {% if items %}
+
+    <!-- CART TABLE -->
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle shadow-sm bg-white rounded">
+
+            <thead class="table-dark text-center">
+                <tr>
+                    <th>S.No</th>
+                    <th>Book Name</th>
+                    <th>Category</th>
+                    <th>Cover Image</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for i in items %}
+
+                <tr class="text-center">
+
+                    <!-- SERIAL -->
+                    <td>{{ forloop.counter }}</td>
+
+                    <!-- BOOK -->
+                    <td class="fw-bold">
+                        {{ i.book.title }}
+                    </td>
+
+                    <!-- CATEGORY -->
+                    <td>
+                        {{ i.book.category.name }}
+                    </td>
+
+                    <!-- IMAGE -->
+                    <td>
+
+                        {% if i.book.cover_image %}
+
+                        <img src="{{ i.book.cover_image.url }}"
+                             class="img-fluid rounded shadow-sm"
+                             style="height:90px; width:70px; object-fit:cover;">
+
+                        {% else %}
+
+                        <span class="text-muted">No Cover</span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <!-- QUANTITY -->
+                    <td>
+
+                        <div class="d-flex justify-content-center align-items-center">
+
+                            <a href="{% url 'updateitem' id=i.id operator='-' %}"
+                               class="btn btn-outline-dark btn-sm rounded-circle">
+                                -
+                            </a>
+
+                            <span class="mx-3 fw-bold fs-5">
+                                {{ i.quantity }}
+                            </span>
+
+                            <a href="{% url 'updateitem' id=i.id operator='+' %}"
+                               class="btn btn-outline-dark btn-sm rounded-circle">
+                                +
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                    <!-- PRICE -->
+                    <td class="fw-bold text-success">
+                        ₹ {{ i.book.price }}
+                    </td>
+
+                    <!-- REMOVE -->
+                    <td>
+
+                        <a href="{% url 'removeitem' id=i.id %}"
+                           class="btn btn-danger btn-sm rounded-pill">
+
+                            <i class="bi bi-trash"></i> Remove
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+            <!-- TOTAL -->
+            <tfoot>
+
+                <tr class="fw-bold fs-5 text-center">
+
+                    <td colspan="5">
+                        Grand Total
+                    </td>
+
+                    <td colspan="2" class="text-success">
+
+                        ₹ {{ total_price }}
+
+                        <br><br>
+
+                        <a href="{% url 'checkout' %}"
+                           class="btn btn-success rounded-pill px-4">
+
+                            Checkout
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </tfoot>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <!-- EMPTY CART -->
+    <div class="text-center py-5">
+
+        <img src="{% static 'img/empty-cart.png' %}"
+             width="200"
+             class="img-fluid">
+
+        <h4 class="mt-4 text-muted">
+            Your cart is empty 😔
+        </h4>
+
+        <a href="{% url 'index' %}"
+           class="btn btn-primary rounded-pill px-4 mt-3">
+
+            Continue Shopping
+
+        </a>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

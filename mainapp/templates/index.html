@@ -1,0 +1,616 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+<!-- ================= HERO SLIDER ================= -->
+<div class="container-fluid px-0 mb-5">
+
+    <div id="mainSlider"
+         class="carousel slide carousel-fade"
+         data-bs-ride="carousel"
+         data-bs-interval="3000">
+
+        <!-- INDICATORS -->
+        <div class="carousel-indicators">
+
+            <button type="button"
+                    data-bs-target="#mainSlider"
+                    data-bs-slide-to="0"
+                    class="active">
+            </button>
+
+            <button type="button"
+                    data-bs-target="#mainSlider"
+                    data-bs-slide-to="1">
+            </button>
+
+            <button type="button"
+                    data-bs-target="#mainSlider"
+                    data-bs-slide-to="2">
+            </button>
+
+        </div>
+
+        <!-- SLIDER ITEMS -->
+        <div class="carousel-inner">
+
+            <!-- SLIDE 1 -->
+            <div class="carousel-item active position-relative">
+
+                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop"
+                     class="d-block w-100 slider-img"
+                     alt="Books">
+
+                <div class="slider-overlay">
+
+                    <span class="slider-tag">
+                        📚 Best Seller Collection
+                    </span>
+
+                    <h1 class="slider-title">
+                        Best Online <br> Book Store
+                    </h1>
+
+                    <p class="slider-text">
+                        Discover amazing books for students & readers
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-warning rounded-pill px-4 py-2 fw-bold">
+
+                        Explore Books
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- SLIDE 2 -->
+            <div class="carousel-item position-relative">
+
+                <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1600&auto=format&fit=crop"
+                     class="d-block w-100 slider-img"
+                     alt="Library">
+
+                <div class="slider-overlay">
+
+                    <span class="slider-tag bg-success">
+                        ⭐ New Arrivals
+                    </span>
+
+                    <h1 class="slider-title">
+                        Knowledge <br> Starts Here
+                    </h1>
+
+                    <p class="slider-text">
+                        Buy your favourite books at best prices
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-light rounded-pill px-4 py-2 fw-bold">
+
+                        Shop Now
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- SLIDE 3 -->
+            <div class="carousel-item position-relative">
+
+                <img src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?q=80&w=1600&auto=format&fit=crop"
+                     class="d-block w-100 slider-img"
+                     alt="Study">
+
+                <div class="slider-overlay">
+
+                    <span class="slider-tag bg-danger">
+                        🚚 Fast Delivery
+                    </span>
+
+                    <h1 class="slider-title">
+                        Read More <br> Learn More
+                    </h1>
+
+                    <p class="slider-text">
+                        Secure payment & easy returns available
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-primary rounded-pill px-4 py-2 fw-bold">
+
+                        View Collection
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PREV BUTTON -->
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#mainSlider"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <!-- NEXT BUTTON -->
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#mainSlider"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= SLIDER CSS ================= -->
+<style>
+
+/* SLIDER IMAGE */
+
+.slider-img{
+    height:600px;
+    object-fit:cover;
+    filter:brightness(55%);
+}
+
+/* OVERLAY */
+
+.slider-overlay{
+    position:absolute;
+    top:50%;
+    left:8%;
+    transform:translateY(-50%);
+    color:white;
+    z-index:10;
+    max-width:600px;
+}
+
+/* TAG */
+
+.slider-tag{
+    display:inline-block;
+    background:#0d6efd;
+    padding:8px 18px;
+    border-radius:30px;
+    font-size:14px;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+/* TITLE */
+
+.slider-title{
+    font-size:65px;
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:20px;
+    text-shadow:0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* TEXT */
+
+.slider-text{
+    font-size:20px;
+    margin-bottom:30px;
+    color:#f1f1f1;
+}
+
+/* BUTTON */
+
+.slider-overlay .btn{
+    transition:0.3s;
+}
+
+.slider-overlay .btn:hover{
+    transform:translateY(-4px);
+}
+
+/* INDICATOR */
+
+.carousel-indicators button{
+    width:12px !important;
+    height:12px !important;
+    border-radius:50%;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .slider-img{
+        height:320px;
+    }
+
+    .slider-overlay{
+        left:5%;
+        max-width:90%;
+    }
+
+    .slider-title{
+        font-size:28px;
+    }
+
+    .slider-text{
+        font-size:14px;
+    }
+
+    .slider-tag{
+        font-size:11px;
+        padding:6px 14px;
+    }
+
+}
+
+</style>
+
+        <!-- BUTTON -->
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+
+            <span class="carousel-control-prev-icon"></span>
+
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+
+            <span class="carousel-control-next-icon"></span>
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= RECENT BOOKS ================= -->
+<div class="container mb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title">📚 Recently Added</h3>
+        <a href="#" class="btn btn-outline-primary rounded-pill btn-sm">
+            View All
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        {% for b in recent_books %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+            <div class="card custom-book-card border-0 shadow-sm h-100">
+
+                <!-- IMAGE -->
+<div class="book-img-box">
+
+    {% if b.cover_image %}
+        <img src="{{ b.cover_image.url }}"
+             class="card-img-top book-img p-3">
+    {% else %}
+       <img src="/static/default.jpg"
+             class="card-img-top book-img p-3">
+    {% endif %}
+
+    <span class="book-badge">
+        New
+    </span>
+
+</div>
+
+                <!-- BODY -->
+                <div class="card-body text-center">
+
+                    <h6 class="fw-bold text-dark">
+                        {{ b.title|truncatechars:35 }}
+                    </h6>
+
+                    <p class="small text-muted mb-2">
+                        Premium Collection
+                    </p>
+
+                    <h5 class="text-success fw-bold mb-3">
+                        ₹{{ b.price }}
+                    </h5>
+
+                    <a href="{% url 'book_detail' b.id %}"
+                       class="btn btn-primary rounded-pill w-100">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- ================= OLD BOOKS ================= -->
+<div class="container mb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title">📖 Old Books</h3>
+
+        <a href="#" class="btn btn-outline-dark rounded-pill btn-sm">
+            Browse More
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        {% for b in old_books %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+            <div class="card custom-book-card border-0 shadow-sm h-100">
+
+                <div class="book-img-box">
+
+                    {% if b.cover_image %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
+
+                    <span class="discount-badge">
+                        Old
+                    </span>
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    <h6 class="fw-bold">
+                        {{ b.title|truncatechars:35 }}
+                    </h6>
+
+                    <p class="small text-muted mb-2">
+                        Budget Friendly
+                    </p>
+
+                    <h5 class="text-success fw-bold mb-3">
+                        ₹{{ b.price }}
+                    </h5>
+
+                    <a href="{% url 'book_detail' b.id %}"
+                       class="btn btn-dark rounded-pill w-100">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- ================= SUGGESTED BOOKS ================= -->
+<div class="container mb-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="section-title">⭐ Suggested For You</h3>
+
+        <a href="#" class="btn btn-outline-success rounded-pill btn-sm">
+            More Books
+        </a>
+    </div>
+
+    <div class="row g-4">
+
+        {% for b in suggested_books %}
+
+        <div class="col-lg-3 col-md-4 col-sm-6">
+
+            <div class="card custom-book-card border-0 shadow-sm h-100">
+
+                <div class="book-img-box">
+
+                   {% if b.cover_image %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
+
+                    <span class="suggest-badge">
+                        Best Seller
+                    </span>
+
+                </div>
+
+                <div class="card-body text-center">
+
+                    <h6 class="fw-bold">
+                        {{ b.title|truncatechars:35 }}
+                    </h6>
+
+                    <p class="small text-muted mb-2">
+                        Recommended For You
+                    </p>
+
+                    <h5 class="text-success fw-bold mb-3">
+                        ₹{{ b.price }}
+                    </h5>
+
+                    <a href="{% url 'book_detail' b.id %}"
+                       class="btn btn-success rounded-pill w-100">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<!-- ================= CSS ================= -->
+<style>
+
+/* SLIDER */
+
+.slider-img{
+    height:550px;
+    object-fit:cover;
+}
+
+.slider-overlay{
+    position:absolute;
+    top:50%;
+    left:10%;
+    transform:translateY(-50%);
+    color:white;
+    z-index:10;
+}
+
+.slider-overlay h1{
+    font-size:55px;
+    text-shadow:0 3px 10px rgba(0,0,0,0.5);
+}
+
+.slider-overlay p{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+/* SECTION */
+
+.section-title{
+    font-weight:700;
+    border-left:5px solid #0d6efd;
+    padding-left:12px;
+}
+
+/* CARD */
+
+.custom-book-card{
+    border-radius:20px;
+    overflow:hidden;
+    transition:0.4s;
+    background:white;
+}
+
+.custom-book-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* IMAGE */
+
+.book-img-box{
+    position:relative;
+    background:#f8f9fa;
+}
+
+.book-img{
+    height:250px;
+    object-fit:contain;
+    transition:0.4s;
+}
+
+.custom-book-card:hover .book-img{
+    transform:scale(1.08);
+}
+
+/* BADGES */
+
+.book-badge,
+.discount-badge,
+.suggest-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    color:white;
+    padding:6px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:600;
+}
+
+.book-badge{
+    background:#0d6efd;
+}
+
+.discount-badge{
+    background:#212529;
+}
+
+.suggest-badge{
+    background:#198754;
+}
+
+/* BUTTON */
+
+.btn{
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.03);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .slider-img{
+        height:260px;
+    }
+
+    .slider-overlay{
+        left:5%;
+    }
+
+    .slider-overlay h1{
+        font-size:24px;
+    }
+
+    .slider-overlay p{
+        font-size:13px;
+    }
+
+    .book-img{
+        height:180px;
+    }
+
+}
+
+</style>
+
+{% endblock %}

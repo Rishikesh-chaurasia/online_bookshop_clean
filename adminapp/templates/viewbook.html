@@ -1,0 +1,48 @@
+{% extends 'adminbase.html' %}
+{% block admin %}
+
+<div class="row">
+    <div class="col-sm-12">
+           <h2 class="mb-3">Book List</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for b in books %}
+            <tr>
+                <td>{{ b.id }}</td>
+                <td>{{ b.title }}</td>
+                <td>{{ b.author }}</td>
+                <td>{{ b.category.name }}</td>
+                <td>
+                    {% if b.cover_image %}
+                     <img src="{{ b.cover_image.url }}" width="80" height="100" alt="No cover image">
+                    {% else %}
+
+                    <img src="" width="80" height="100" alt="No cover image">
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No Books Added Yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    </div>
+  
+</div>
+        {% endblock %}

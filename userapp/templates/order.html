@@ -1,0 +1,35 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block user %}
+
+
+ <div class="row">
+    <div class="col-sm-12">
+        <h3>Welcome to order summary</h3>
+        {% for order in orderitems %}
+        <table class="table ">
+            <tr class="table-dark">
+                <th>order ID:{{orser.first.id}}</th>
+                <th >total Amount :{{order.first.order.total_amount}}</th>
+                <th colspan="2" class="text-end">Order At :{{order.first.order.ordered_at}}</th>
+            </tr>
+
+            <tr class="table-success">
+                <th>s.no</th>
+                <th>Book Name</th>
+                <th>Quantity </th>
+                <th>price</th>
+            </tr>
+            {% for oi in order %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{oi.book.title}}</td>
+                <td>{{oi.quantity}}</td>
+                <td>{{oi.price}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
+    </div>
+</div >
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block user %}
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Edit profile</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <lable for="n">Name</lable>
+            <input type="text" name="name" value="{{user.name}}" class="form-control mb-4" id="n">
+
+            <label for="em">Email <small> (yuo can not change it)</small></label>
+            <input type="email" name="email" value="{{ user.email }}" class="form-control mb-4" id="em" disabled>
+
+            <lable for="n">Contact NO</lable>
+            <input type="number" name="contactno" value="{{user.contactno}}" class="form-control mb-4" id="n">
+
+            <lable for="pic">Picture <small> (choose new  if you want to update)</small></lable>
+            <input type="file" name="profile" class="form-control mb-4" id="pic">
+
+            <lable for="add">Address</lable>
+            <textarea name="address" name="add" value="{{user.address}}" id="add" class="form-control mb-4 "></textarea>
+
+            <button type="submit"class="btn btn-primary"><i class="ti ti-edit"></i>Update profile</button>
+                 
+        </form>
+
+    </div>
+</div>
+{% endblock %}

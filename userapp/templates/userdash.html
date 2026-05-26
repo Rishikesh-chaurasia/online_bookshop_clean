@@ -1,0 +1,80 @@
+{% extends 'userbase.html' %}
+{% load static %}
+
+{% block user %}
+
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="fw-bold">👤 User Dashboard</h2>
+            <p class="text-muted">Welcome back to your account</p>
+        </div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="row g-4">
+
+        <!-- ORDERS -->
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card shadow-sm border-0 text-center p-4 dashboard-card">
+
+                <i class="bi bi-bag-check fs-1 text-primary"></i>
+
+                <h5 class="mt-3">My Orders</h5>
+
+                <p class="text-muted">View all your purchased books</p>
+
+                <a href="#" class="btn btn-primary rounded-pill px-4">
+                    View Orders
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- CART -->
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card shadow-sm border-0 text-center p-4 dashboard-card">
+
+                <i class="bi bi-cart fs-1 text-success"></i>
+
+                <h5 class="mt-3">My Cart</h5>
+
+                <p class="text-muted">Check items in your cart</p>
+
+                <a href="{% url 'cart' %}" class="btn btn-success rounded-pill px-4">
+                    Go to Cart
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- PROFILE -->
+        <div class="col-lg-4 col-md-6">
+
+            <div class="card shadow-sm border-0 text-center p-4 dashboard-card">
+
+                <i class="bi bi-person-circle fs-1 text-warning"></i>
+
+                <h5 class="mt-3">My Profile</h5>
+
+                <p class="text-muted">Update your account details</p>
+
+                <a href="{% url 'userprofile' %}" class="btn btn-warning rounded-pill px-4 text-white">
+                    View Profile
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,300 @@
+{% extends 'adminbase.html' %}
+{% block admin %}
+
+<div class="container-fluid py-4">
+
+    <!-- PAGE TITLE -->
+    <div class="row mb-4">
+
+        <div class="col-sm-12">
+
+            <div class="card border-0 shadow-lg rounded-4 bg-primary text-white p-4">
+
+                <h2 class="fw-bold mb-1">
+                    📚 Add New Book
+                </h2>
+
+                <p class="mb-0">
+                    Fill all details carefully to add a new book.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FORM -->
+    <div class="row">
+
+        <div class="col-lg-9 mx-auto">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <!-- HEADER -->
+                <div class="bg-dark text-white p-3">
+
+                    <h4 class="mb-0 fw-bold">
+                        Book Information
+                    </h4>
+
+                </div>
+
+                <!-- BODY -->
+                <div class="card-body p-4">
+
+                    <form method="post"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <!-- BOOK TITLE -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="T" class="form-label fw-semibold">
+                                    Book Title
+                                </label>
+
+                                <input type="text"
+                                       name="title"
+                                       class="form-control custom-input"
+                                       id="T"
+                                       placeholder="Enter book title"
+                                       required>
+
+                            </div>
+
+                            <!-- AUTHOR -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="a" class="form-label fw-semibold">
+                                    Author Name
+                                </label>
+
+                                <input type="text"
+                                       name="author"
+                                       class="form-control custom-input"
+                                       id="a"
+                                       placeholder="Enter author name"
+                                       required>
+
+                            </div>
+
+                            <!-- CATEGORY -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="c" class="form-label fw-semibold">
+                                    Select Category
+                                </label>
+
+                                <select name="catid"
+                                        id="c"
+                                        class="form-select custom-input"
+                                        required>
+
+                                    <option value="" selected disabled>
+                                        Choose Category
+                                    </option>
+
+                                    {% for c in categories %}
+
+                                    <option value="{{c.id}}">
+                                        {{c.name}}
+                                    </option>
+
+                                    {% endfor %}
+
+                                </select>
+
+                            </div>
+
+                            <!-- LANGUAGE -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="L" class="form-label fw-semibold">
+                                    Language
+                                </label>
+
+                                <input type="text"
+                                       name="language"
+                                       class="form-control custom-input"
+                                       id="L"
+                                       placeholder="English / Hindi"
+                                       required>
+
+                            </div>
+
+                            <!-- DESCRIPTION -->
+                            <div class="col-md-12 mb-4">
+
+                                <label for="Desc" class="form-label fw-semibold">
+                                    Description
+                                </label>
+
+                                <textarea name="description"
+                                          id="Desc"
+                                          rows="5"
+                                          class="form-control custom-input"
+                                          placeholder="Write book description here..."
+                                          required></textarea>
+
+                            </div>
+
+                            <!-- ORIGINAL PRICE -->
+                            <div class="col-md-4 mb-4">
+
+                                <label for="op" class="form-label fw-semibold">
+                                    Original Price
+                                </label>
+
+                                <input type="number"
+                                       name="original_price"
+                                       class="form-control custom-input"
+                                       id="op"
+                                       placeholder="₹ Original Price"
+                                       required>
+
+                            </div>
+
+                            <!-- PRICE -->
+                            <div class="col-md-4 mb-4">
+
+                                <label for="p" class="form-label fw-semibold">
+                                    Selling Price
+                                </label>
+
+                                <input type="number"
+                                       name="price"
+                                       class="form-control custom-input"
+                                       id="p"
+                                       placeholder="₹ Selling Price"
+                                       required>
+
+                            </div>
+
+                            <!-- STOCK -->
+                            <div class="col-md-4 mb-4">
+
+                                <label for="s" class="form-label fw-semibold">
+                                    Stock Quantity
+                                </label>
+
+                                <input type="number"
+                                       name="stock"
+                                       class="form-control custom-input"
+                                       id="s"
+                                       placeholder="Available stock"
+                                       required>
+
+                            </div>
+
+                            <!-- DATE -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="pd" class="form-label fw-semibold">
+                                    Published Date
+                                </label>
+
+                                <input type="date"
+                                       name="published_date"
+                                       class="form-control custom-input"
+                                       id="pd"
+                                       required>
+
+                            </div>
+
+                            <!-- IMAGE -->
+                            <div class="col-md-6 mb-4">
+
+                                <label for="ci" class="form-label fw-semibold">
+                                    Cover Image
+                                </label>
+
+                                <input type="file"
+                                       name="cover_image"
+                                       class="form-control custom-input"
+                                       id="ci"
+                                       required>
+
+                            </div>
+
+                        </div>
+
+                        <!-- BUTTON -->
+                        <div class="text-center mt-3">
+
+                            <button type="submit"
+                                    class="btn btn-primary px-5 py-2 rounded-pill fw-bold shadow">
+
+                                ➕ Add Book
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= CUSTOM CSS ================= -->
+<style>
+
+/* CARD */
+
+.card{
+    border-radius:20px;
+}
+
+/* INPUT */
+
+.custom-input{
+    border-radius:12px;
+    padding:12px 15px;
+    border:1px solid #dcdcdc;
+    transition:0.3s;
+}
+
+/* INPUT FOCUS */
+
+.custom-input:focus{
+    border-color:#0d6efd;
+    box-shadow:0 0 10px rgba(13,110,253,0.2);
+}
+
+/* BUTTON */
+
+.btn-primary{
+    transition:0.3s;
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    h2{
+        font-size:24px;
+    }
+
+    .card-body{
+        padding:20px !important;
+    }
+
+}
+
+</style>
+
+{% endblock %}

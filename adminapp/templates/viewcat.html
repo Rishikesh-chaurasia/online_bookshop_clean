@@ -1,0 +1,27 @@
+{% extends 'adminbase.html' %}
+{% block admin %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>View catogory</h1>
+         </div>
+           <div class="container">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            {% for c in cat %}
+            <tr>
+                <td>{{c.name}}</td>
+                <td>{{c.description}}</td>
+                <td>
+                    <a href="" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+        {% endblock %}
