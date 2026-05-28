@@ -34,9 +34,9 @@ SECRET_KEY = 'django-insecure-6mnh5x2=r9hp36zi65+40^2z)n2309^esg&dyhix5$@3_tl@-5
 
 #      STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-DEBUG = os.getenv("DEBUG", "False") == "True"
+# SECURITY WARNING: don't run with debug turned on in production
+
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = ['*']
 

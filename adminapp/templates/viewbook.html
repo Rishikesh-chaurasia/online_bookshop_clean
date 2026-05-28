@@ -25,11 +25,10 @@
                 <td>{{ b.category.name }}</td>
                 <td>
                     {% if b.cover_image %}
-                     <img src="{{ b.cover_image.url }}" width="80" height="100" alt="No cover image">
-                    {% else %}
-
-                    <img src="" width="80" height="100" alt="No cover image">
-                    {% endif %}
+    <img src="{{ b.cover_image.url }}" width="80" height="100" alt="Book Image">
+{% else %}
+    <img src="/static/default.jpg" width="80" height="100" alt="No cover image">
+{% endif %}
                 </td>
             </tr>
             {% empty %}
