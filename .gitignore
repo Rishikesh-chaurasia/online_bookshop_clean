@@ -20,4 +20,3 @@ venv/
 staticfiles/
 adminapp/static/
 *.sqlite3
-media/
