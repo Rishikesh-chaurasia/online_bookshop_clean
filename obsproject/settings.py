@@ -41,7 +41,7 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://online-bookshop-clean-production.up.railway.app",
+    "https://online-bookshop-clean.up.railway.app",
 ]
 
 # Application definition
