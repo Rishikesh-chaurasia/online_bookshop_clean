@@ -286,7 +286,6 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="section-title">📚 Recently Added</h3>
-
         <a href="#" class="btn btn-outline-primary rounded-pill btn-sm">
             View All
         </a>
@@ -301,23 +300,21 @@
             <div class="card custom-book-card border-0 shadow-sm h-100">
 
                 <!-- IMAGE -->
-                <div class="book-img-box">
+<div class="book-img-box">
 
-                    {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             class="card-img-top book-img p-3"
-                             alt="{{ b.title }}">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             class="card-img-top book-img p-3"
-                             alt="No Image">
-                    {% endif %}
+    {% if b.cover_image %}
+        <img src="{{ b.cover_image.url }}"
+             class="card-img-top book-img p-3">
+    {% else %}
+       <img src="/static/default.jpg"
+             class="card-img-top book-img p-3">
+    {% endif %}
 
-                    <span class="book-badge">
-                        New
-                    </span>
+    <span class="book-badge">
+        New
+    </span>
 
-                </div>
+</div>
 
                 <!-- BODY -->
                 <div class="card-body text-center">
@@ -353,7 +350,6 @@
 
 </div>
 
-
 <!-- ================= OLD BOOKS ================= -->
 <div class="container mb-5">
 
@@ -376,14 +372,9 @@
                 <div class="book-img-box">
 
                     {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             class="card-img-top book-img p-3"
-                             alt="{{ b.title }}">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             class="card-img-top book-img p-3"
-                             alt="No Image">
-                    {% endif %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
 
                     <span class="discount-badge">
                         Old
@@ -424,7 +415,6 @@
 
 </div>
 
-
 <!-- ================= SUGGESTED BOOKS ================= -->
 <div class="container mb-5">
 
@@ -446,15 +436,10 @@
 
                 <div class="book-img-box">
 
-                    {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             class="card-img-top book-img p-3"
-                             alt="{{ b.title }}">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             class="card-img-top book-img p-3"
-                             alt="No Image">
-                    {% endif %}
+                   {% if b.cover_image %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
 
                     <span class="suggest-badge">
                         Best Seller
