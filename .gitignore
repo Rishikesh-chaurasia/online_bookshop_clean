@@ -1,21 +1,23 @@
-# Django
-db.sqlite3
-staticfiles/
-
 # Python
 __pycache__/
 *.pyc
 
-# Virtual env
-env/
+# Virtual Environment
 venv/
+env/
 
-# Environment variables
+# Database
+db.sqlite3
+
+# Environment Variables
 .env
 
-# IDE
+# Static Files
+staticfiles/
+
+# Media Files
+media/
+
+# VS Code
 .vscode/
 .idea/
-staticfiles/
-adminapp/static/
-*.sqlite3

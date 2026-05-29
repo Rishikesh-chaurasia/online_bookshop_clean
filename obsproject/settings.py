@@ -12,37 +12,24 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 from dotenv import load_dotenv
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# SECURITY KEY
+#SECRET_KEY = 'django-insecure-6mnh5x2=r9hp36zi65+40^2z)n2309^esg&dyhix5$@3_tl@-5'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-# Stripe (SAFE)
-STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
-STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY")
+# DEBUG
+DEBUG = os.getenv("DEBUG") =="True"
+ALLOWED_HOSTS= [
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-#     BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6mnh5x2=r9hp36zi65+40^2z)n2309^esg&dyhix5$@3_tl@-5'
-
-#      STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production
-
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
-
-ALLOWED_HOSTS = ['*']
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://online-bookshop-clean.up.railway.app",
+    '*'
 ]
+
+# STRIPE KEYS
 
 # Application definition
 
@@ -93,11 +80,10 @@ WSGI_APPLICATION = 'obsproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
 
 
@@ -135,12 +121,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # Default primary key field type
@@ -152,6 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # payment intigration key
 
-STRIPE_PUBLISHABLE_KEY = 'your_publishable_key'
+
 
 

@@ -10,8 +10,13 @@ def index(request):
     books = Book.objects.all().order_by('-id')
 
     recent_books = books[:8]
+
     old_books = Book.objects.filter(category__name="Old")[:8]
-    suggested_books = books.order_by('?')[:8]
+
+    # recent books ko exclude karke suggestions banao
+    suggested_books = books.exclude(
+        id__in=recent_books.values_list('id', flat=True)
+    ).order_by('?')[:8]
 
     return render(request, 'index.html', {
         'books': books,

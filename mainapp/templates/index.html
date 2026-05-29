@@ -282,13 +282,11 @@
 </div>
 
 <!-- ================= RECENT BOOKS ================= -->
-<!-- ================= RECENTLY ADDED BOOKS ================= -->
-<section class="container mb-5">
+<div class="container mb-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="section-title">📚 Recently Added</h3>
-
-        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">
+        <a href="#" class="btn btn-outline-primary rounded-pill btn-sm">
             View All
         </a>
     </div>
@@ -301,24 +299,24 @@
 
             <div class="card custom-book-card border-0 shadow-sm h-100">
 
-                <!-- BOOK IMAGE -->
-                <div class="book-img-box">
+                <!-- IMAGE -->
+<div class="book-img-box">
 
-                    {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             alt="{{ b.title }}"
-                             class="card-img-top book-img p-3">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             alt="Default Book"
-                             class="card-img-top book-img p-3">
-                    {% endif %}
+    {% if b.cover_image %}
+        <img src="{{ b.cover_image.url }}"
+             class="card-img-top book-img p-3">
+    {% else %}
+       <img src="/static/default.jpg"
+             class="card-img-top book-img p-3">
+    {% endif %}
 
-                    <span class="book-badge">New</span>
+    <span class="book-badge">
+        New
+    </span>
 
-                </div>
+</div>
 
-                <!-- BOOK CONTENT -->
+                <!-- BODY -->
                 <div class="card-body text-center">
 
                     <h6 class="fw-bold text-dark">
@@ -350,20 +348,17 @@
 
     </div>
 
-</section>
-
+</div>
 
 <!-- ================= OLD BOOKS ================= -->
-<section class="container mb-5">
+<div class="container mb-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-
         <h3 class="section-title">📖 Old Books</h3>
 
-        <a href="#" class="btn btn-outline-dark btn-sm rounded-pill">
+        <a href="#" class="btn btn-outline-dark rounded-pill btn-sm">
             Browse More
         </a>
-
     </div>
 
     <div class="row g-4">
@@ -374,27 +369,22 @@
 
             <div class="card custom-book-card border-0 shadow-sm h-100">
 
-                <!-- BOOK IMAGE -->
                 <div class="book-img-box">
 
                     {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             alt="{{ b.title }}"
-                             class="card-img-top book-img p-3">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             alt="Default Book"
-                             class="card-img-top book-img p-3">
-                    {% endif %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
 
-                    <span class="discount-badge">Old</span>
+                    <span class="discount-badge">
+                        Old
+                    </span>
 
                 </div>
 
-                <!-- BOOK CONTENT -->
                 <div class="card-body text-center">
 
-                    <h6 class="fw-bold text-dark">
+                    <h6 class="fw-bold">
                         {{ b.title|truncatechars:35 }}
                     </h6>
 
@@ -423,20 +413,17 @@
 
     </div>
 
-</section>
-
+</div>
 
 <!-- ================= SUGGESTED BOOKS ================= -->
-<section class="container mb-5">
+<div class="container mb-5">
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-
         <h3 class="section-title">⭐ Suggested For You</h3>
 
-        <a href="#" class="btn btn-outline-success btn-sm rounded-pill">
+        <a href="#" class="btn btn-outline-success rounded-pill btn-sm">
             More Books
         </a>
-
     </div>
 
     <div class="row g-4">
@@ -447,18 +434,12 @@
 
             <div class="card custom-book-card border-0 shadow-sm h-100">
 
-                <!-- BOOK IMAGE -->
                 <div class="book-img-box">
 
-                    {% if b.cover_image %}
-                        <img src="{{ b.cover_image.url }}"
-                             alt="{{ b.title }}"
-                             class="card-img-top book-img p-3">
-                    {% else %}
-                        <img src="/static/default.jpg"
-                             alt="Default Book"
-                             class="card-img-top book-img p-3">
-                    {% endif %}
+                   {% if b.cover_image %}
+    <img src="{{ b.cover_image.url }}"
+         class="card-img-top book-img p-3">
+{% endif %}
 
                     <span class="suggest-badge">
                         Best Seller
@@ -466,10 +447,9 @@
 
                 </div>
 
-                <!-- BOOK CONTENT -->
                 <div class="card-body text-center">
 
-                    <h6 class="fw-bold text-dark">
+                    <h6 class="fw-bold">
                         {{ b.title|truncatechars:35 }}
                     </h6>
 
@@ -498,7 +478,7 @@
 
     </div>
 
-</section>
+</div>
 
 <!-- ================= CSS ================= -->
 <style>
