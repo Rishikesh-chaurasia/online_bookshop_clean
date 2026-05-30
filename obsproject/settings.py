@@ -30,6 +30,9 @@ ALLOWED_HOSTS= [
 
     '*'
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://onlinebookshopclean-production.up.railway.app",
+]
 
 # STRIPE KEYS
 
