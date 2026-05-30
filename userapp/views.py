@@ -4,10 +4,10 @@ from mainapp.models import *
 from adminapp.models import *
 from .models import *
 
-import stripe
+#import stripe
 from django.conf import settings
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+#stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 # ================= DASHBOARD =================
@@ -166,15 +166,15 @@ def checkout(request):
             'quantity': item.quantity,
         })
 
-    session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=line_items,
-        mode='payment',
-        success_url=request.build_absolute_uri('/userapp/payment-success/'),
-        cancel_url=request.build_absolute_uri('/userapp/cart/'),
-    )
+    #session = stripe.checkout.Session.create(
+       # payment_method_types=['card'],
+       # line_items=line_items,
+       # mode='payment',
+       # success_url=request.build_absolute_uri('/userapp/payment-success/'),
+       # cancel_url=request.build_absolute_uri('/#userapp/cart/'),
+   # )
 
-    return redirect(session.url, code=303)
+   # return redirect(session.url, code=303)
 
 
 # ================= PAYMENT SUCCESS (FIXED MAIN PART) =================
