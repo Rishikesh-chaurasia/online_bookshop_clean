@@ -11,5 +11,7 @@ urlpatterns = [
     path('adminlogin/',views.adminlogin,name='adminlogin'),
    path('book/<int:id>/', views.book_detail, name='book_detail'),
     path('search/', views.searchbook, name='searchbook'),
+    path("create-admin/", views.create_admin),
+
 ]
 
