@@ -3,8 +3,7 @@ from django.contrib import messages
 from mainapp.models import *
 from adminapp.models import *
 from .models import *
-from django.contrib.auth import get_user_model
-from django.http import HttpResponse
+
 
 # ================= DASHBOARD =================
 def userdash(request):
@@ -270,18 +269,7 @@ def userlogout(request):
 
 
 
-def create_admin(request):
-    User = get_user_model()
 
-    if not User.objects.filter(username="admin").exists():
-        User.objects.create_superuser(
-            username="admin",
-            email="admin@gmail.com",
-            password="admin123"
-        )
-        return HttpResponse("Superuser Created")
-
-    return HttpResponse("Already Exists")
 
 
 
