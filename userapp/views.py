@@ -4,12 +4,6 @@ from mainapp.models import *
 from adminapp.models import *
 from .models import *
 
-#import stripe
-from django.conf import settings
-
-#stripe.api_key = settings.STRIPE_SECRET_KEY
-
-
 # ================= DASHBOARD =================
 def userdash(request):
     if 'userid' not in request.session:
@@ -70,7 +64,6 @@ def cart(request):
         return redirect('login')
 
     cart, created = Cart.objects.get_or_create(user=user)
-
     items = CartItem.objects.filter(cart=cart)
 
     total_price = sum(i.get_total_price() for i in items)
@@ -132,7 +125,7 @@ def updateitem(request, id, operator):
     return redirect('cart')
 
 
-# ================= REMOVE ITEM FIXED =================
+# ================= REMOVE ITEM =================
 def removeitem(request, id):
     if 'userid' not in request.session:
         return redirect('login')
@@ -143,41 +136,25 @@ def removeitem(request, id):
     return redirect('cart')
 
 
-# ================= CHECKOUT =================
+# ================= CHECKOUT (NO STRIPE) =================
 def checkout(request):
     if 'userid' not in request.session:
         return redirect('login')
 
     user = UserInfo.objects.get(email=request.session['userid'])
-    cart = Cart.objects.get(user=user)
+
+    cart, created = Cart.objects.get_or_create(user=user)
     items = CartItem.objects.filter(cart=cart)
 
-    line_items = []
+    if not items.exists():
+        messages.warning(request, "Cart is empty")
+        return redirect('cart')
 
-    for item in items:
-        line_items.append({
-            'price_data': {
-                'currency': 'inr',
-                'unit_amount': int(item.book.price * 100),
-                'product_data': {
-                    'name': item.book.title,
-                },
-            },
-            'quantity': item.quantity,
-        })
-
-    #session = stripe.checkout.Session.create(
-       # payment_method_types=['card'],
-       # line_items=line_items,
-       # mode='payment',
-       # success_url=request.build_absolute_uri('/userapp/payment-success/'),
-       # cancel_url=request.build_absolute_uri('/#userapp/cart/'),
-   # )
-
-   # return redirect(session.url, code=303)
+    # direct payment success (since Stripe removed)
+    return redirect('payment-success')
 
 
-# ================= PAYMENT SUCCESS (FIXED MAIN PART) =================
+# ================= PAYMENT SUCCESS =================
 def payment_success(request):
     if 'userid' not in request.session:
         return redirect('login')
@@ -185,20 +162,19 @@ def payment_success(request):
     user = UserInfo.objects.get(email=request.session['userid'])
 
     try:
-        cart = Cart.objects.get(user=user)
+        cart, created = Cart.objects.get_or_create(user=user)
         items = CartItem.objects.filter(cart=cart)
 
         if not items.exists():
             messages.warning(request, "Cart empty")
             return redirect('index')
 
-        # ================= STOCK CHECK =================
+        # STOCK CHECK
         for i in items:
             if i.book.stock < i.quantity:
                 messages.error(request, f"{i.book.title} out of stock")
                 return redirect('cart')
 
-        # ================= ORDER CREATE =================
         total = sum(i.get_total_price() for i in items)
 
         order = Order.objects.create(
@@ -206,7 +182,6 @@ def payment_success(request):
             total_amount=total
         )
 
-        # ================= ORDER ITEMS =================
         for i in items:
             book = i.book
 
@@ -217,13 +192,12 @@ def payment_success(request):
                 price=book.price
             )
 
-            # SAFE STOCK UPDATE
             book.stock = max(0, book.stock - i.quantity)
             book.save()
 
         items.delete()
 
-        messages.success(request, "Payment successful!")
+        messages.success(request, "Order placed successfully!")
 
         return render(request, 'payment_success.html', {
             'order': order
@@ -231,21 +205,11 @@ def payment_success(request):
 
     except Cart.DoesNotExist:
         return redirect('index')
-    
-# ================= LOGOUT =================
-def userlogout(request):
 
-    if 'userid' in request.session:
-        del request.session['userid']
 
-        messages.success(request, "Logged out successfully")
-
-    return redirect('index') 
-# ================= ORDER PAGE =================
+# ================= ORDER =================
 def order(request):
-
     if 'userid' not in request.session:
-        messages.error(request, "Please login first")
         return redirect('login')
 
     user = UserInfo.objects.get(email=request.session['userid'])
@@ -253,24 +217,19 @@ def order(request):
     orders = Order.objects.filter(user=user).order_by('-id')
 
     orderitems = []
-
     for o in orders:
-        orderitems.append(
-            OrderItem.objects.filter(order=o)
-        )
+        orderitems.append(OrderItem.objects.filter(order=o))
 
-    context = {
+    return render(request, 'order.html', {
         'user': user,
         'orders': orders,
         'orderitems': orderitems
-    }
+    })
 
-    return render(request, 'order.html', context)  
- # ================= CHANGE PASSWORD =================
+
+# ================= CHANGE PASSWORD =================
 def change_password(request):
-
     if 'userid' not in request.session:
-        messages.error(request, "Please login first")
         return redirect('login')
 
     user = UserInfo.objects.get(email=request.session['userid'])
@@ -281,25 +240,30 @@ def change_password(request):
         new_password = request.POST.get('new_password')
         confirm_password = request.POST.get('confirm_password')
 
-        # old password check
         if user.password != old_password:
             messages.error(request, "Old password is incorrect")
             return redirect('change_password')
 
-        # confirm password check
         if new_password != confirm_password:
             messages.error(request, "Passwords do not match")
             return redirect('change_password')
 
-        # update password
         user.password = new_password
         user.save()
 
         messages.success(request, "Password changed successfully")
         return redirect('userprofile')
 
-    return render(request, 'change_password.html') 
+    return render(request, 'change_password.html')
 
+
+# ================= LOGOUT =================
+def userlogout(request):
+    if 'userid' in request.session:
+        del request.session['userid']
+        messages.success(request, "Logged out successfully")
+
+    return redirect('index')
 
 
 
