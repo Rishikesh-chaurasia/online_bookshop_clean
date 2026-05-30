@@ -21,8 +21,8 @@ load_dotenv()
 #     STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
 
 # SECURITY KEY
-#SECRET_KEY = 'django-insecure-6mnh5x2=r9hp36zi65+40^2z)n2309^esg&dyhix5$@3_tl@-5'
-#     SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = 'django-insecure-6mnh5x2=r9hp36zi65+40^2z)n2309^esg&dyhix5$@3_tl@-5'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # DEBUG
 DEBUG = os.getenv("DEBUG") =="True"
